@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Flex, Box, Text, Heading } from "rebass";
 import styled from "styled-components";
-import logo from "./logo.svg";
 import { FormComponent, FormContainer } from "react-authorize-net";
-import R from "ramda";
 
 let clientKey = process.env.REACT_APP_AUTHORIZENET_CLIENTKEY as string;
 let apiLoginId = process.env.REACT_APP_AUTHORIZENET_LOGINID as string;
@@ -18,7 +16,7 @@ const Button = styled.button({
   backgroundColor: "white",
   border: "2px solid black",
   fontWeight: 600,
-  borderRadius: "2px"
+  borderRadius: "2px",
 });
 
 const ErrorComponent = (props: {
@@ -29,14 +27,14 @@ const ErrorComponent = (props: {
     <Text fontSize={3} fontWeight={"500"} mb={3}>
       Failed to process payment
     </Text>
-    {props.errors.map(error => (
+    {props.errors.map((error) => (
       <Text py={2}>{error}</Text>
     ))}
     <Button onClick={props.onBackButtonClick}>Go Back</Button>
   </div>
 );
 
-const Header = props => (
+const Header = (props) => (
   <Flex py={4}>
     <Heading>react-authorize-net-example</Heading>
   </Flex>
@@ -47,7 +45,7 @@ class App extends Component<{}, State> {
 
   onErrorHandler = (response: any) => {
     this.setState({
-      status: ["failure", response.messages.message.map(err => err.text)]
+      status: ["failure", response.messages.message.map((err) => err.text)],
     });
   };
 
